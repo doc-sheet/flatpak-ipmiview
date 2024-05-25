@@ -1,0 +1,38 @@
+---
+id: com.supermicro.IPMIView
+runtime: org.freedesktop.Platform
+runtime-version: '23.08'
+sdk: org.freedesktop.Sdk
+
+command: /app/IPMIView/IPMIView20
+finish-args:
+  - --share=ipc
+  - --device=dri
+  - --share=network
+  - --socket=wayland
+  - --socket=fallback-x11
+  - --env=PATH=/app/bin:/app/IPMIView/jre/bin:/usr/bin
+  - --env=JAVA_TOOL_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true"
+  - --persist=IPMIView
+
+modules:
+  - name: IPMIView
+    buildsystem: simple
+    build-options:
+      no-debuginfo: true
+    build-commands:
+      - mv IPMIView_2.21.1_build.230720_bundleJRE_Linux_x64 /app/IPMIView
+      - echo "lax.user.dir=${HOME}/IPMIView" >> /app/IPMIView/IPMIView20.lax
+      - echo "lax.dir=/app/IPMIView/" >> /app/IPMIView/IPMIView20.lax
+      - echo "lax.root.install.dir=/app/IPMIView/" >> /app/IPMIView/IPMIView20.lax
+      - |
+        sed -i -r \
+          -e 's/(disabledAlgorithms=.+?)MD5[^,]+?,/\1/g' \
+          -e 's/TLSv1,//g' \
+          -e 's/RSA keySize[^,]+,//g' \
+          /app/IPMIView/jre/conf/security/java.security
+    sources:
+      - type: archive
+        url: https://www.supermicro.com/Bios/sw_download/588/IPMIView_2.21.1_build.230720_bundleJRE_Linux_x64.tar.gz
+        sha256: aaba66912ba3664341a72f4730be67608f4c9d7b6745fd4bc6fb003cfabbf103
+        strip-components: 0
