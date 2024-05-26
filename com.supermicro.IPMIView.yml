@@ -4,7 +4,7 @@ runtime: org.freedesktop.Platform
 runtime-version: '23.08'
 sdk: org.freedesktop.Sdk
 
-command: /app/IPMIView/IPMIView20
+command: IPMIView
 finish-args:
   - --share=ipc
   - --device=dri
@@ -31,8 +31,14 @@ modules:
           -e 's/TLSv1,//g' \
           -e 's/RSA keySize[^,]+,//g' \
           /app/IPMIView/jre/conf/security/java.security
+      - mkdir -p /app/bin
+      - ln -s /app/IPMIView/IPMIView20 /app/bin/IPMIView
     sources:
       - type: archive
         url: https://www.supermicro.com/Bios/sw_download/588/IPMIView_2.21.1_build.230720_bundleJRE_Linux_x64.tar.gz
         sha256: aaba66912ba3664341a72f4730be67608f4c9d7b6745fd4bc6fb003cfabbf103
         strip-components: 0
+      - type: file
+        path: com.supermicro.IPMIView.desktop
+      - type: file
+        path: com.supermicro.IPMIView.metainfo.xml

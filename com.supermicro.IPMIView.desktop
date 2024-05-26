@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=IPMIView
+Comment=Management software program based on the IPMI specification Reversion 1.5 - 2.0
+Icon=com.supermicro.IPMIView
+Exec=IPMIView
+Terminal=false
+Categories=Network
+Keywords=ipmi
