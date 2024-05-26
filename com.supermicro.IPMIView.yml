@@ -12,7 +12,7 @@ finish-args:
   - --socket=wayland
   - --socket=fallback-x11
   - --env=PATH=/app/bin:/app/IPMIView/jre/bin:/usr/bin
-  - --env=JAVA_TOOL_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true"
+  - --env=JAVA_TOOL_OPTIONS="-Dawt.useSystemAAFontSettings=on"
   - --persist=IPMIView
 
 modules:
