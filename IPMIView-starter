@@ -1,0 +1,5 @@
+#!/bin/sh
+set -e
+export lax_user_dir="${XDG_CONFIG_HOME}/IPMIView"
+ln -s "${HOME}/IPMIView" "${lax_user_dir}" || :
+cd /app/IPMIView && exec ./IPMIView20
