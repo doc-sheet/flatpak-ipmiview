@@ -11,7 +11,7 @@ jobs:
       image: ghcr.io/flathub-infra/flatpak-github-actions:freedesktop-23.08
       options: --privileged
     steps:
-    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+    - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
     - uses: flatpak/flatpak-github-actions/flatpak-builder@10a3c29f0162516f0f68006be14c92f34bd4fa6c # v6.5
       with:
         bundle: supermicro.IPMIView
